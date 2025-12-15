@@ -9,17 +9,20 @@ const sensorData = [
 
 export default function Sensors() {
   return (
-    <div className="space-y-6 p-6 bg-gray-50 min-h-full">
-      <h1 className="text-3xl font-bold text-gray-800 mb-4">Sensores</h1>
+    <div className="space-y-6 p-6 bg-gray-950 min-h-full text-gray-100">
+      <h1 className="text-3xl font-bold text-white mb-4">Sensores</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {sensorData.map(sensor => (
-          <div key={sensor.id} className="bg-white shadow-lg rounded-xl p-6 border border-gray-200">
-            <h2 className="text-xl font-semibold text-gray-800 mb-2">{sensor.name}</h2>
-            <p><span className="font-semibold">Tipo:</span> {sensor.type}</p>
-            <p><span className="font-semibold">Unidad:</span> {sensor.unit}</p>
-            <p><span className="font-semibold">Nodo:</span> {sensor.node}</p>
-            <p><span className="font-semibold">Umbral Min:</span> {sensor.min}</p>
-            <p><span className="font-semibold">Umbral Max:</span> {sensor.max}</p>
+          <div
+            key={sensor.id}
+            className="bg-gray-800 shadow-lg rounded-xl p-6 border border-gray-700 hover:shadow-xl transition transform hover:scale-105 duration-300"
+          >
+            <h2 className="text-xl font-semibold text-sky-400 mb-2">{sensor.name}</h2>
+            <p><span className="font-semibold text-gray-300">Tipo:</span> {sensor.type}</p>
+            <p><span className="font-semibold text-gray-300">Unidad:</span> {sensor.unit}</p>
+            <p><span className="font-semibold text-gray-300">Nodo:</span> {sensor.node}</p>
+            <p><span className="font-semibold text-gray-300">Umbral Min:</span> {sensor.min}</p>
+            <p><span className="font-semibold text-gray-300">Umbral Max:</span> {sensor.max}</p>
           </div>
         ))}
       </div>

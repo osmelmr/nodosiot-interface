@@ -16,14 +16,14 @@ export default function Readings() {
   }, []);
 
   return (
-    <div className="p-6 min-h-full bg-gradient-to-br from-slate-50 to-sky-50 space-y-6">
-      <h1 className="text-3xl font-bold text-gray-900">📊 Lecturas de Hoy</h1>
-      <p className="text-gray-600">Visualiza todas las lecturas capturadas por tus sensores hoy.</p>
+    <div className="p-6 min-h-full bg-gradient-to-br from-gray-900 via-gray-800 to-gray-700 space-y-6 text-gray-100">
+      <h1 className="text-3xl font-bold text-white">📊 Lecturas de Hoy</h1>
+      <p className="text-gray-400">Visualiza todas las lecturas capturadas por tus sensores hoy.</p>
 
       {/* Tabla de lecturas */}
       <div className="overflow-x-auto">
-        <table className="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
-          <thead className="bg-sky-100 text-gray-700">
+        <table className="min-w-full bg-gray-800 shadow-md rounded-lg overflow-hidden border border-gray-700">
+          <thead className="bg-gray-700 text-gray-300">
             <tr>
               <th className="py-3 px-4 text-left">Nodo</th>
               <th className="py-3 px-4 text-left">Sensor</th>
@@ -34,12 +34,15 @@ export default function Readings() {
           </thead>
           <tbody>
             {readings.map((r) => (
-              <tr key={r.id} className="border-b hover:bg-gray-50 transition">
+              <tr
+                key={r.id}
+                className="border-b border-gray-700 hover:bg-gray-700/50 transition"
+              >
                 <td className="py-3 px-4">{r.node}</td>
                 <td className="py-3 px-4">{r.sensor}</td>
-                <td className="py-3 px-4 font-semibold">{r.value}</td>
+                <td className="py-3 px-4 font-semibold text-sky-400">{r.value}</td>
                 <td className="py-3 px-4">{r.unit}</td>
-                <td className="py-3 px-4">{r.timestamp}</td>
+                <td className="py-3 px-4 text-gray-400">{r.timestamp}</td>
               </tr>
             ))}
           </tbody>

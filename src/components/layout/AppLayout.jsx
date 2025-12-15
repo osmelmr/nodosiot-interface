@@ -13,35 +13,32 @@ const AppLayout = () => {
     setIsSidebarOpen(prev => !prev);
   };
   
-  
   const mainContentClasses = `
     flex-grow 
     p-5 
     transition-all duration-300 ease-in-out
     min-h-screen 
+    bg-gray-900 
+    text-gray-100
   `;
 
   return (
-    
-    <div className="flex flex-col min-h-screen ">
+    <div className="flex flex-col min-h-screen bg-gray-950 text-gray-100">
       
-      
+      {/* Navbar en modo oscuro */}
       <Navbar toggleSidebar={toggleSidebar} /> 
 
-      
       <div className="flex"> 
-        
-        
-        <Sidebar isOpen={isSidebarOpen}/>
+        {/* Sidebar en modo oscuro */}
+        <Sidebar isOpen={isSidebarOpen} />
 
-        
+        {/* Contenido principal */}
         <main className={mainContentClasses}>
           <Outlet /> 
         </main>
-
       </div>
 
-      
+      {/* Footer en modo oscuro */}
       <Footer />
     </div>
   );

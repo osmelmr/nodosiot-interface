@@ -1,37 +1,3 @@
-// ===== NAVBAR.jsx =====
-import { NavLink } from "react-router-dom";
-
-export function Navbar() {
-  return (
-    <nav className="bg-white shadow-md border-b border-gray-200">
-      <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-        <h1 className="text-xl font-extrabold text-sky-600">📡 IoT Meteo</h1>
-
-        <div className="flex gap-6">
-          <NavLink
-            to="/home"
-            className={({ isActive }) =>
-              `font-semibold ${isActive ? "text-sky-600" : "text-gray-600 hover:text-sky-600"}`
-            }
-          >
-            Dashboard
-          </NavLink>
-
-          <NavLink
-            to="/nodes"
-            className={({ isActive }) =>
-              `font-semibold ${isActive ? "text-sky-600" : "text-gray-600 hover:text-sky-600"}`
-            }
-          >
-            Nodos
-          </NavLink>
-        </div>
-      </div>
-    </nav>
-  );
-}
-
-// ===== NODES.jsx =====
 export default function Nodes() {
   const nodes = [
     {
@@ -58,10 +24,10 @@ export default function Nodes() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6 space-y-8">
+    <div className="min-h-screen bg-gray-950 p-6 space-y-8 text-gray-100">
       <div>
-        <h1 className="text-4xl font-extrabold text-gray-900">📡 Nodos IoT</h1>
-        <p className="text-gray-600 mt-2">
+        <h1 className="text-4xl font-extrabold text-white">📡 Nodos IoT</h1>
+        <p className="text-gray-400 mt-2">
           Visualiza el estado operativo y las últimas lecturas de cada nodo.
         </p>
       </div>
@@ -77,9 +43,9 @@ export default function Nodes() {
 
 const NodeCard = ({ node }) => {
   const statusStyles = {
-    online: "bg-emerald-100 text-emerald-700",
-    warning: "bg-yellow-100 text-yellow-700",
-    offline: "bg-red-100 text-red-700",
+    online: "bg-emerald-900 text-emerald-300 border-emerald-700",
+    warning: "bg-yellow-900 text-yellow-300 border-yellow-700",
+    offline: "bg-red-900 text-red-300 border-red-700",
   };
 
   const statusDescription = {
@@ -89,13 +55,13 @@ const NodeCard = ({ node }) => {
   };
 
   return (
-    <div className="bg-white rounded-2xl shadow-md hover:shadow-xl transition p-6 border border-gray-100 flex flex-col justify-between">
+    <div className="bg-gray-800 rounded-2xl shadow-md hover:shadow-xl transition p-6 border border-gray-700 flex flex-col justify-between">
       <div>
         <div className="flex justify-between items-start">
-          <h2 className="text-xl font-bold text-gray-800">{node.name}</h2>
+          <h2 className="text-xl font-bold text-white">{node.name}</h2>
           <div className="text-right">
             <span
-              className={`text-xs font-bold px-3 py-1 rounded-full ${statusStyles[node.status]}`}
+              className={`text-xs font-bold px-3 py-1 rounded-full border ${statusStyles[node.status]}`}
             >
               {node.status}
             </span>
@@ -105,11 +71,11 @@ const NodeCard = ({ node }) => {
           </div>
         </div>
 
-        <p className="text-sm text-gray-500 mt-2">📍 {node.location}</p>
+        <p className="text-sm text-gray-400 mt-2">📍 {node.location}</p>
 
         <div className="mt-4">
-          <p className="text-sm text-gray-400">Última lectura</p>
-          <p className="text-lg font-semibold text-gray-700">
+          <p className="text-sm text-gray-500">Última lectura</p>
+          <p className="text-lg font-semibold text-gray-200">
             {node.lastReading}
           </p>
         </div>
