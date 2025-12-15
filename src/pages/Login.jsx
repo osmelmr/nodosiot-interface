@@ -12,8 +12,6 @@ export default function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // Simulación de login
     if (form.username === "admin" && form.password === "admin") {
       localStorage.setItem("token", "fake-jwt-token");
       navigate("/home");
@@ -23,14 +21,17 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-500 to-indigo-600">
-      <div className="bg-white rounded-xl shadow-xl w-full max-w-md p-8">
-        <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">
-          Iniciar Sesión
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-sky-400 via-blue-500 to-indigo-700">
+      <div className="bg-white/90 backdrop-blur-xl rounded-2xl shadow-2xl w-full max-w-md p-8">
+        <h1 className="text-3xl font-bold text-center text-gray-800">
+          Plataforma Meteorológica
         </h1>
+        <p className="text-center text-gray-500 text-sm mb-6">
+          Visualización de variables climáticas
+        </p>
 
         {error && (
-          <div className="bg-red-100 text-red-700 p-2 rounded mb-4 text-center">
+          <div className="bg-red-50 text-red-700 p-3 rounded-lg mb-4 text-center text-sm">
             {error}
           </div>
         )}
@@ -42,29 +43,30 @@ export default function Login() {
             placeholder="Usuario"
             value={form.username}
             onChange={handleChange}
-            className="border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-sky-500"
             required
           />
+
           <input
             type="password"
             name="password"
             placeholder="Contraseña"
             value={form.password}
             onChange={handleChange}
-            className="border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-sky-500"
             required
           />
 
           <button
             type="submit"
-            className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition"
+            className="bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-600 hover:to-blue-700 text-white font-semibold py-3 rounded-xl transition shadow-lg"
           >
-            Entrar
+            Entrar al sistema
           </button>
         </form>
 
-        <p className="text-sm text-gray-500 mt-4 text-center">
-          Usuario de prueba: <strong>admin</strong> / Contraseña: <strong>admin</strong>
+        <p className="text-xs text-gray-500 mt-5 text-center">
+          Usuario de prueba: <strong>admin</strong> | Contraseña: <strong>admin</strong>
         </p>
       </div>
     </div>

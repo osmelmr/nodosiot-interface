@@ -1,80 +1,105 @@
+import { useNavigate } from "react-router-dom";
+
+// Componente MetricCard con estilo moderno y neumorfismo
+const MetricCard = ({ title, value, icon, color, highlight }) => (
+  <div
+    className={`bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition transform hover:scale-105 duration-300 ${
+      highlight ? "border-2 border-red-500" : "border border-gray-200"
+    }`}
+  >
+    <div className="flex justify-between items-center mb-4">
+      <h2 className="text-sm font-semibold text-gray-500 uppercase">{title}</h2>
+      <span className={`text-3xl ${color}`}>{icon}</span>
+    </div>
+    <p className={`text-4xl font-bold ${color}`}>{value}</p>
+  </div>
+);
+
 export default function Home() {
+  const navigate = useNavigate();
+
   return (
-    // Contenedor principal con fondo suave
-    <div className="space-y-8 bg-gray-50 p-4 min-h-full"> 
-      
-      {/* Encabezado */}
-      <h1 className="text-3xl font-extrabold text-gray-900 border-b pb-2">
-        <span className="text-indigo-600">Dashboard</span> IoT
-      </h1>
-      <p className="text-lg text-gray-600">
-        Bienvenido a la Plataforma. Monitorea tus nodos y sensores en tiempo real.
-      </p>
+    <div className="min-h-screen bg-gradient-to-br from-slate-100 via-sky-50 to-indigo-50 p-8 space-y-10">
 
-      {/* Cards de métricas */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        
-        {/* Card 1: Nodos Activos */}
-        <MetricCard 
-          title="Nodos Activos" 
-          value="12" 
-          icon="📡" 
-          color="text-indigo-600" 
+      {/* ===================== Encabezado ===================== */}
+      <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4">
+        <div>
+          <h1 className="text-5xl font-extrabold text-gray-900">
+            <span className="text-sky-600">Dashboard</span> IoT
+          </h1>
+          <p className="text-gray-600 mt-2 text-lg">
+            Monitoreo en tiempo real de nodos, sensores y lecturas
+          </p>
+        </div>
+      </div>
+
+      {/* ===================== Métricas ===================== */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <MetricCard title="Nodos Activos" value="12" icon="📡" color="text-sky-600" />
+        <MetricCard title="Sensores Activos" value="34" icon="🌡️" color="text-emerald-500" />
+        <MetricCard title="Alertas Pendientes" value="3" icon="🚨" color="text-red-600" highlight />
+        <MetricCard title="Lecturas Hoy" value="256K" icon="📊" color="text-indigo-600" />
+      </div>
+
+      {/* ===================== Cuadros clickeables ===================== */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <ClickableCard
+          title="Estado de los Nodos"
+          description="Haz clic para ver todos los nodos, su estado online/offline y detalles completos."
+          icon="📡"
+          color="text-yellow-500"
+          onClick={() => navigate("/nodes")}
         />
-
-        {/* Card 2: Sensores Activos */}
-        <MetricCard 
-          title="Sensores Activos" 
-          value="34" 
-          icon="🌡️" 
-          color="text-green-600" 
-        />
-
-        {/* Card 3: Alertas Pendientes (Destacada en rojo) */}
-        <MetricCard 
-          title="Alertas Pendientes" 
-          value="3" 
-          icon="🚨" 
-          color="text-red-600" 
-          highlight={true}
-        />
-
-        {/* Card 4: Lecturas Hoy */}
-        <MetricCard 
-          title="Lecturas Hoy" 
-          value="256K" // Leve cambio para hacerlo más IoT
-          icon="📈" 
-          color="text-blue-600" 
+        <ClickableCard
+          title="Sensores"
+          description="Haz clic para ver todos los sensores, su tipo, nodo asignado y umbrales configurables."
+          icon="🌡️"
+          color="text-green-500"
+          onClick={() => navigate("/sensors")}
         />
       </div>
 
-      {/* Sección de resumen principal */}
-      <div className="bg-white shadow-xl rounded-xl p-8 border border-gray-200">
-        <h2 className="text-2xl font-semibold mb-4 text-gray-800 flex items-center">
-          <span className="mr-2 text-yellow-600">⭐️</span> Resumen Operacional
-        </h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <ClickableCard
+          title="Lecturas Hoy"
+          description="Haz clic para ver todas las lecturas capturadas hoy por tus sensores."
+          icon="📈"
+          color="text-indigo-500"
+          onClick={() => navigate("/readings")}
+        />
+        <ClickableCard
+          title="Alertas"
+          description="Haz clic para ver todas las alertas generadas por los sensores."
+          icon="🚨"
+          color="text-red-500"
+          onClick={() => navigate("/alerts")}
+        />
+      </div>
+
+      {/* ===================== Resumen Operacional ===================== */}
+      <div
+        onClick={() => navigate("/summary")}
+        className="bg-gradient-to-r from-indigo-100 via-sky-100 to-white rounded-2xl p-8 shadow-xl border border-gray-200 cursor-pointer hover:shadow-2xl transition transform hover:scale-105 duration-300"
+      >
+        <h2 className="text-2xl font-bold mb-3 text-gray-900">Resumen Operacional</h2>
         <p className="text-gray-600 leading-relaxed">
-          Esta es la sección principal donde se integrarán los elementos visuales más críticos,
-          como gráficos de tendencias en tiempo real, mapas de nodos y la lista de alertas más recientes.
-          Un diseño limpio y una paleta de colores coherente aquí reducirán la carga cognitiva del usuario.
+          Visualiza tendencias climáticas, detecta alertas tempranas y supervisa el estado de tus nodos IoT.
+          Esta plataforma está diseñada para apoyar la toma de decisiones en entornos agrícolas y académicos.
         </p>
       </div>
     </div>
   );
 }
 
-// 📌 Componente de Tarjeta de Métrica Reutilizable (Definición auxiliar)
-const MetricCard = ({ title, value, icon, color, highlight }) => (
-  <div 
-    className={`
-      bg-white shadow-lg rounded-xl p-6 transition-transform duration-300 ease-in-out hover:scale-[1.02]
-      ${highlight ? 'border-2 border-red-500' : 'border border-gray-100'}
-    `}
+// Componente reutilizable para los cuadros clickeables
+const ClickableCard = ({ title, description, icon, color, onClick }) => (
+  <div
+    onClick={onClick}
+    className="bg-white rounded-2xl p-8 shadow-lg border border-gray-200 cursor-pointer hover:shadow-2xl transition transform hover:scale-105 duration-300"
   >
-    <div className="flex justify-between items-start mb-2">
-        <h2 className="text-gray-500 text-sm font-semibold uppercase">{title}</h2>
-        <span className={`text-2xl ${color}`}>{icon}</span>
-    </div>
-    <p className={`text-4xl font-extrabold ${color}`}>{value}</p>
+    <h2 className={`text-2xl font-semibold mb-3 text-gray-800 flex items-center gap-2`}>
+      <span className={`text-3xl ${color}`}>{icon}</span> {title}
+    </h2>
+    <p className="text-gray-500">{description}</p>
   </div>
 );

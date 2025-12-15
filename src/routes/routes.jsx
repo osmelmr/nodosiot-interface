@@ -1,3 +1,8 @@
+import Nodes from "../pages/Nodes";
+import Sensors from "../pages/Sensors"; // <-- CORRECTO
+import Readings from "../pages/Readings";
+import Alerts from "../pages/Alerts";
+import Summary from "../pages/Summary";
 import { createBrowserRouter } from "react-router-dom";
 
 /* Layout */
@@ -18,27 +23,27 @@ import ProtectedRoute from "./ProtectedRoute";
 import Settings from "../pages/Settings";
 
 const router = createBrowserRouter([
-  /* ======================
-     PÁGINA PÚBLICA: LOGIN
-     ====================== */
   {
     path: "/",
     element: <Login />,
   },
-
-  /* ======================
-     PÁGINAS PROTEGIDAS CON APP LAYOUT
-     ====================== */
   {
-    element: <ProtectedRoute />, // verifica token
+    element: <ProtectedRoute />,
     children: [
       {
-        element: <AppLayout />, // layout principal con Navbar + Sidebar
+        element: <AppLayout />,
         children: [
           { path: "/home", element: <Home /> },
           { path: "/about", element: <About /> },
           { path: "/contact", element: <Contact /> },
-          { path: "settings", element: <Settings /> },
+          { path: "/settings", element: <Settings /> },
+          { path: "/nodes", element: <Nodes /> },
+          { path: "/sensors", element: <Sensors /> },
+          { path: "/readings", element: <Readings /> },
+          {path: "/alerts", element: <Alerts />},
+          {path: "/summary", element: <Summary />},
+
+
         ],
       },
     ],

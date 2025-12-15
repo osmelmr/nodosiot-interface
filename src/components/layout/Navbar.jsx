@@ -51,9 +51,8 @@ const Navbar = ({ toggleSidebar }) => {
         
         {/* 🚨 Enlaces de Navegación solicitados (Home, Acerca, Contacto) */}
         <Link to="/home" style={{ color: 'white', margin: '0 10px', textDecoration: 'none' }}>Home</Link>
-        <Link to="/about" style={{ color: 'white', margin: '0 10px', textDecoration: 'none' }}>Acerca</Link>
-        <Link to="/contact" style={{ color: 'white', margin: '0 10px', textDecoration: 'none' }}>Contacto</Link>
-        
+        <Link to="/sensors" style={{ color: 'white', margin: '0 10px', textDecoration: 'none' }}>Sensores</Link>
+        <Link to="/alerts" style={{ color: 'white', margin: '0 10px', textDecoration: 'none' }}>Alertas</Link>
         {/* Botón de Cerrar Sesión */}
         <button
           onClick={handleLogout}
